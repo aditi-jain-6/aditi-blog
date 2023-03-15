@@ -1,0 +1,47 @@
+{% include "header.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+<!-- Page Header-->
+<header class="masthead" style="background-image: url({{url_for('static', filename='assets/img/home-bg.jpg')}})">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1>Log In</h1>
+                    <span class="subheading">Welcome Back!</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main Content -->
+<div class="container-fluid form">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-7 col-xl-6">
+        {% with messages = get_flashed_messages() %}
+            {% if messages: %}
+                {% for message in messages: %}
+                    <p class="text-danger fs-5">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form action="{{ url_for('login') }}" method="POST" novalidate>
+            {{ form.csrf_token }}
+            {% for field in form: %}
+                {% if field.name not in ["csrf_token", "submit"]: %}
+                <p>
+                    {{ field.label(class_="form-label fw-bold") }} <br> {{ field(class_="form-control") }}
+                        {% for err in field.errors: %}
+                            <span class="text-danger"> {{ err }} </span>
+                        {% endfor %}
+                </p>
+                {% endif %}
+            {% endfor %}
+            <br>
+            {{ form.submit(class_="btn btn-primary") }}
+        </form>
+        </div>
+    </div>
+</div>
+
+
+{% include "footer.html" %}
