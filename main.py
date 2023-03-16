@@ -23,7 +23,6 @@ GMAIL_PASSWORD = os.getenv("GMAIL_PASSWORD")
 app = Flask(__name__)
 app.config["SECRET_KEY"] = secrets.token_hex()
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///blog.db"
-app.config["SERVER_NAME"] = os.getenv("SERVER_NAME")
 
 db = SQLAlchemy(app)
 
@@ -276,5 +275,5 @@ def send_email(name, email, phone, message):
         )
 
 
-if __name__ == "__main__":
-    app.run()
+# if __name__ == "__main__":
+#     app.run()
