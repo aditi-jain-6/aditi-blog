@@ -275,5 +275,5 @@ def send_email(name, email, phone, message):
         )
 
 
-# if __name__ == "__main__":
-#     app.run()
+if __name__ == "__main__":
+    app.run()
