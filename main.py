@@ -22,7 +22,7 @@ GMAIL_PASSWORD = os.getenv("GMAIL_PASSWORD")
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = secrets.token_hex()
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///blog.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL", "sqlite:///blog.db")
 
 db = SQLAlchemy(app)
 
