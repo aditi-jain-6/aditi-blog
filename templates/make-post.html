@@ -19,28 +19,29 @@
     </div>
 </header>
 <!-- Main Content -->
-<div class="container-fluid form">
-    <form method="post" novalidate>
-        {{ form.csrf_token }}
-        {% for field in form: %}
-            {% if field.name not in ["csrf_token", "body", "submit"]: %}
-                <p>
-                    {{ field.label(class_="form-label fw-bold") }} <br> {{ field(class_="form-control") }}
-                    {% for err in field.errors: %}
-                        <span> {{ err }} </span>
-                    {% endfor %}
-                </p>
-            {% endif %}
-        {% endfor %}
-        {{ ckeditor.load() }}
-        {{ ckeditor.config(name="body") }}
-        {{ form.body.label(class_="form-label fw-bold")|safe }} <br> {{ form.body(class_="form-control", rows="15") }}
-        <br>
-        {{ form.submit(class_="btn btn-primary") }}
-    </form>
-<!--     {{ ckeditor.load() }} -->
-<!--     {{ ckeditor.config(name="body") }} -->
-<!--     {{ wtf.quick_form(form, method="post", button_map={"submit": "primary"}, novalidate=True) }} -->
+<div class="container form">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+        <form method="post" novalidate>
+            {{ form.csrf_token }}
+            {% for field in form: %}
+                {% if field.name not in ["csrf_token", "body", "submit"]: %}
+                    <p>
+                        {{ field.label(class_="form-label fw-bold") }} <br> {{ field(class_="form-control") }}
+                        {% for err in field.errors: %}
+                            <span> {{ err }} </span>
+                        {% endfor %}
+                    </p>
+                {% endif %}
+            {% endfor %}
+            {{ ckeditor.load() }}
+            {{ ckeditor.config(name="body") }}
+            {{ form.body.label(class_="form-label fw-bold")|safe }} <br> {{ form.body(class_="form-control", rows="15") }}
+            <br>
+            {{ form.submit(class_="btn btn-primary") }}
+        </form>
+        </div>
+    </div>
 </div>
 
 
